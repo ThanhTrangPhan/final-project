@@ -31,7 +31,7 @@ const SocialButton = ({ children, label, href }) => {
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue("blue.50", "blue.900")}
+      //bg={useColorModeValue("blue.50", "blue.900")}
       color={useColorModeValue("black.700", "black.200")}
     >
       <Container

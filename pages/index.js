@@ -336,7 +336,7 @@ export default function Home({ campaigns }) {
               href="https://github.com/"
               isExternal
             >
-              the Github Repo <ExternalLinkIcon mx="2px" />
+              Github Repo <ExternalLinkIcon mx="2px" />
             </Link>{" "}
           </Heading>
           <Divider marginTop="4" />

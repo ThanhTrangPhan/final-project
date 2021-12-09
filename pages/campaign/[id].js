@@ -217,7 +217,7 @@ export default function CampaignSingle({
               <Box mx={"auto"} w={"full"}>
                 <SimpleGrid columns={{ base: 1 }} spacing={{ base: 5 }}>
                   <StatsCard
-                    title={"Minimum Contribution"}
+                    title={"Mức tối thiểu"}
                     stat={`${web3.utils.fromWei(
                       minimumContribution,
                       "ether"
@@ -237,14 +237,14 @@ export default function CampaignSingle({
                     }
                   />
                   <StatsCard
-                    title={"Số kượng yêu cầu "}
+                    title={"Số lượng yêu cầu "}
                     stat={requestsCount}
                     info={
                       "Yêu cầu rút quỹ cần được thông qua với hơn 50% biểu quyết đồng ý "
                     }
                   />
                   <StatsCard
-                    title={"Số lựogn người chấp nhận yêu cầu"}
+                    title={"Số lượng người biểu quyết "}
                     stat={approversCount}
                     info={
                       "Số lượng người đã tham gia gây quỹ cho chiến dịch này "

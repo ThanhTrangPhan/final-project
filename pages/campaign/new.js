@@ -27,8 +27,8 @@ import NextLink from "next/link";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { getETHPrice, getETHPriceInUSD } from "../../lib/convert";
 
-import factory from "../factory";
-import web3 from "../web3";
+import factory from "../../service/factory";
+import web3 from "../../service/web3";
 
 export default function NewCampaign() {
   const {

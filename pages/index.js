@@ -26,9 +26,9 @@ import {
   Progress,
 } from "@chakra-ui/react";
 
-import factory from "./factory";
-import web3 from "./web3";
-import Campaign from "./campaign";
+import factory from "../service/factory";
+import web3 from "../service/web3";
+import Campaign from "../service/campaign";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaHandshake } from "react-icons/fa";
 import { FcShare, FcDonate, FcMoneyTransfer } from "react-icons/fc";
@@ -53,13 +53,13 @@ const Feature = ({ title, text, icon }) => {
         justify={"center"}
         color={"white"}
         rounded={"full"}
-        bg={useColorModeValue("gray.100", "gray.700")}
+        bg={useColorModeValue("blue.100", "blue.700")}
         mb={1}
       >
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <Text color={useColorModeValue("gray.500", "gray.200")}>{text}</Text>
+      <Text color={useColorModeValue("blue.500", "blue.200")}>{text}</Text>
     </Stack>
   );
 };
@@ -77,7 +77,7 @@ function CampaignCard({
   return (
     <NextLink href={`/campaign/${id}`}>
       <Box
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("white", "blue.800")}
         maxW={{ md: "sm" }}
         borderWidth="1px"
         rounded="lg"
@@ -121,9 +121,9 @@ function CampaignCard({
 
             <Tooltip
               label="Contribute"
-              bg={useColorModeValue("white", "gray.700")}
+              bg={useColorModeValue("white", "blue.700")}
               placement={"top"}
-              color={useColorModeValue("gray.800", "white")}
+              color={useColorModeValue("blue.800", "white")}
               fontSize={"1.2em"}
             >
               <chakra.a display={"flex"}>
@@ -139,7 +139,7 @@ function CampaignCard({
           </Flex>
           <Flex alignContent="center" py={2}>
             {" "}
-            <Text color={"gray.500"} pr={2}>
+            <Text color={"blue.500"} pr={2}>
               by
             </Text>{" "}
             <Heading size="base" isTruncated>
@@ -173,7 +173,7 @@ function CampaignCard({
                   fontSize="lg"
                   display={balance > 0 ? "inline" : "none"}
                   fontWeight={"normal"}
-                  color={useColorModeValue("gray.500", "gray.200")}
+                  color={useColorModeValue("blue.500", "blue.200")}
                 >
                   (${getWEIPriceInUSD(ethPrice, balance)})
                 </Text>
@@ -240,7 +240,7 @@ export default function Home({ campaigns }) {
           <Heading
             textAlign={useBreakpointValue({ base: "left" })}
             fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
+            color={useColorModeValue("blue.800", "white")}
             as="h1"
             py={4}
           >

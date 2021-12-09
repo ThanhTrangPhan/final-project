@@ -37,8 +37,8 @@ import {
   CheckCircleIcon,
   WarningIcon,
 } from "@chakra-ui/icons";
-import web3 from "../../../web3";
-import Campaign from "../../../campaign";
+import web3 from "../../../../service/web3";
+import Campaign from "../../../../service/campaign";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;

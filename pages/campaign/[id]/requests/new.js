@@ -25,8 +25,8 @@ import {
   FormHelperText,
   Textarea,
 } from "@chakra-ui/react";
-import web3 from "../../../web3";
-import Campaign from "../../../campaign";
+import web3 from "../../../../service/web3";
+import Campaign from "../../../../service/campaign";
 import { useAsync } from "react-use";
 
 export default function NewRequest() {

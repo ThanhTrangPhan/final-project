@@ -41,9 +41,9 @@ import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import Confetti from "react-confetti";
 
-import web3 from "../web3";
-import Campaign from "../campaign";
-import factory from "../factory";
+import web3 from "../../service/web3";
+import Campaign from "../../service/campaign";
+import factory from "../../service/factory";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;

@@ -1,15 +1,4 @@
-import {
-  Box,
-  chakra,
-  Container,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-  VisuallyHidden,
-  Heading,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import {Box,chakra,Container,Link,Stack,useColorModeValue,VisuallyHidden,Heading,useBreakpointValue} from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaGithub, FaGlobe } from "react-icons/fa";
 import NextLink from "next/link";
 

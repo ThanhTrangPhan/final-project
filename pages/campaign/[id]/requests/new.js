@@ -98,7 +98,7 @@ export default function NewRequest() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4}>
                 <FormControl id="description">
-                  <FormLabel>Cho tiết </FormLabel>
+                  <FormLabel>Chi tiết </FormLabel>
                   <Textarea
                     {...register("description", { required: true })}
                     isDisabled={isSubmitting}

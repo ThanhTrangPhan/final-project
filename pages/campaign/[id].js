@@ -157,7 +157,7 @@ export default function CampaignSingle({
   return (
     <div>
       <Head>
-        <title>CHI TIẾT VỀ CHIẾN DỊCH</title>
+        <title>Chiến dịch </title>
         <meta name="description" content="Các yêu cầu rút quỹ" />
         <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
@@ -290,7 +290,7 @@ export default function CampaignSingle({
                       <Text as="span" fontWeight={"bold"}>
                         {balance > 0
                           ? web3.utils.fromWei(balance, "ether")
-                          : "0, Become a Donor 😄"}
+                          : "0, Hỗ trợ chiến dịch"}
                       </Text>
                       <Text
                         as="span"

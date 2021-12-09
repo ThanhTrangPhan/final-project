@@ -31,7 +31,7 @@ import web3 from "../service/web3";
 import Campaign from "../service/campaign";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaHandshake } from "react-icons/fa";
-import { FcShare, FcDonate, FcMoneyTransfer } from "react-icons/fc";
+import { FcShare, FcStart, FcMoneyTransfer } from "react-icons/fc";
 
 export async function getServerSideProps(context) {
   const campaigns = await factory.methods.getDeployedCampaigns().call();
@@ -93,7 +93,7 @@ function CampaignCard({
       >
         <Box height="18em">
           <Img
-            src={imageURL}
+            src="./poster.png"
             alt={`Picture of ${name}`}
             roundedTop="lg"
             objectFit="cover"
@@ -132,7 +132,7 @@ function CampaignCard({
                   h={7}
                   w={7}
                   alignSelf={"center"}
-                  color={"teal.400"}
+                  color={"blue.400"}
                 />{" "}
               </chakra.a>
             </Tooltip>
@@ -140,7 +140,7 @@ function CampaignCard({
           <Flex alignContent="center" py={2}>
             {" "}
             <Text color={"blue.500"} pr={2}>
-              by
+              bởi
             </Text>{" "}
             <Heading size="base" isTruncated>
               {creatorId}
@@ -244,7 +244,7 @@ export default function Home({ campaigns }) {
             as="h1"
             py={4}
           >
-            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain 😄{" "}
+            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain {" "}
           </Heading>
           <NextLink href="/campaign/new">
             <Button
@@ -252,12 +252,12 @@ export default function Home({ campaigns }) {
               fontSize={"md"}
               fontWeight={600}
               color={"white"}
-              bg={"black.400"}
+              bg={"gray.400"}
               _hover={{
-                bg: "gray.300",
+                bg: "blue.700",
               }}
             >
-              Create Campaign
+              Tạo chiến dịch mới 
             </Button>
           </NextLink>
         </Container>
@@ -308,7 +308,7 @@ export default function Home({ campaigns }) {
           <Divider marginTop="4" />
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} py={8}>
             <Feature
-              icon={<Icon as={FcDonate} w={10} h={10} />}
+              icon={<Icon as={FcStart} w={10} h={10} />}
               title={"Bắt đầu một chiến dịch"}
               text={
                 "Điền đầy đủ thông tin chiến dịch bạn muốn kêu gọi"

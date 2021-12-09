@@ -445,13 +445,6 @@ export default function Requests({
                 >
                   Chưa có yêu cầu nào cho chiến dịch {name} 
                 </Heading>
-                <Text
-                  textAlign={useBreakpointValue({ base: "center" })}
-                  color={useColorModeValue("blue.600", "blue.300")}
-                  fontSize="sm"
-                >
-                  Tạo yêu cầu rút quỹ 
-                </Text>
 
                 <Button
                   fontSize={"md"}

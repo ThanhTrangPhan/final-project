@@ -1,19 +1,4 @@
-import {
-  Box,
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  Stack,
-  useColorModeValue,
-  useBreakpointValue,
-  Container,
-  Heading,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from "@chakra-ui/react";
+import {Box,Flex,Button,Stack,useColorModeValue,Container,Heading,Menu,MenuButton, MenuList,MenuItem} from "@chakra-ui/react";
 import { useWallet } from "use-wallet";
 
 import NextLink from "next/link";
@@ -48,7 +33,7 @@ export default function NavBar() {
           ),
         }}
       >
-        <Container as={Flex} maxW={"7xl"} align={"center"}>
+        <Container as={Flex} maxW={"7xl"} align={"left"}>
           <Flex flex={{ base: 1 }} justify="start" ml={{ base: -2, md: 0 }}>
             <Heading
               textAlign="left"
@@ -60,7 +45,7 @@ export default function NavBar() {
               <Box
                 as={"span"}
                 color={useColorModeValue("blue.400", "blue.300")}
-                position={"center"}
+                position={"left"}
                 zIndex={10}
                 _after={{
                   content: '""',
@@ -68,7 +53,7 @@ export default function NavBar() {
                   left: 0,
                   bottom: 0,
                   w: "full",
-                  h: "25%",
+                  h: "30%",
                   bg: useColorModeValue("blue.100", "blue.900"),
                   zIndex: -1,
                 }}

@@ -3,7 +3,7 @@ import Head from "next/head";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { useRouter } from "next/router";
-import { getETHPrice, getWEIPriceInUSD } from "../../../../lib/getETHPrice";
+import { getETHPrice, getWEIPriceInUSD } from "../../../../lib/convert";
 import {
   Heading,
   useBreakpointValue,
@@ -37,9 +37,9 @@ import {
   CheckCircleIcon,
   WarningIcon,
 } from "@chakra-ui/icons";
-import web3 from "../../../../smart-contract/web3";
-import Campaign from "../../../../smart-contract/campaign";
-import factory from "../../../../smart-contract/factory";
+import web3 from "../../../web3";
+import Campaign from "../../../campaign";
+import factory from "../../../factory";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;

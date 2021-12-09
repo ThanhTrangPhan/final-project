@@ -5,7 +5,7 @@ import { useWallet } from "use-wallet";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { getETHPrice, getETHPriceInUSD } from "../../../../lib/getETHPrice";
+import { getETHPrice, getETHPriceInUSD } from "../../../../lib/convert";
 import {
   Box,
   FormControl,
@@ -25,8 +25,8 @@ import {
   FormHelperText,
   Textarea,
 } from "@chakra-ui/react";
-import web3 from "../../../../smart-contract/web3";
-import Campaign from "../../../../smart-contract/campaign";
+import web3 from "../../../web3";
+import Campaign from "../../../campaign";
 import { useAsync } from "react-use";
 
 export default function NewRequest() {

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
 import styles from "../styles/Home.module.css";
-import { getETHPrice, getWEIPriceInUSD } from "../lib/getETHPrice";
+import { getETHPrice, getWEIPriceInUSD } from "../lib/convert";
 import {
   Heading,
   useBreakpointValue,
@@ -26,9 +26,9 @@ import {
   Progress,
 } from "@chakra-ui/react";
 
-import factory from "../smart-contract/factory";
-import web3 from "../smart-contract/web3";
-import Campaign from "../smart-contract/campaign";
+import factory from "./factory";
+import web3 from "./web3";
+import Campaign from "./campaign";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaHandshake } from "react-icons/fa";
 import { FcShare, FcDonate, FcMoneyTransfer } from "react-icons/fc";

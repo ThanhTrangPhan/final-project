@@ -8,7 +8,7 @@ import {
   getETHPrice,
   getETHPriceInUSD,
   getWEIPriceInUSD,
-} from "../../lib/getETHPrice";
+} from "../../lib/convert";
 import {
   Box,
   Flex,
@@ -41,9 +41,9 @@ import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import Confetti from "react-confetti";
 
-import web3 from "../../smart-contract/web3";
-import Campaign from "../../smart-contract/campaign";
-import factory from "../../smart-contract/factory";
+import web3 from "../web3";
+import Campaign from "../campaign";
+import factory from "../factory";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;

@@ -25,10 +25,10 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { getETHPrice, getETHPriceInUSD } from "../../lib/getETHPrice";
+import { getETHPrice, getETHPriceInUSD } from "../../lib/convert";
 
-import factory from "../../smart-contract/factory";
-import web3 from "../../smart-contract/web3";
+import factory from "../factory";
+import web3 from "../web3";
 
 export default function NewCampaign() {
   const {

@@ -60,7 +60,7 @@ export default function NavBar() {
               <Box
                 as={"span"}
                 color={useColorModeValue("blue.400", "blue.300")}
-                position={"relative"}
+                position={"center"}
                 zIndex={10}
                 _after={{
                   content: '""',
@@ -68,7 +68,7 @@ export default function NavBar() {
                   left: 0,
                   bottom: 0,
                   w: "full",
-                  h: "30%",
+                  h: "25%",
                   bg: useColorModeValue("blue.100", "blue.900"),
                   zIndex: -1,
                 }}

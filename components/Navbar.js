@@ -30,7 +30,7 @@ export default function NavBar() {
           ),
         }}
       >
-        <Container as={Flex} maxW={"7xl"} align={"left"}>
+        <Container as={Flex} maxW={"7xl"} align={"center"}>
           <Flex flex={{ base: 1 }} justify="start" ml={{ base: -2, md: 0 }}>
             <Heading
               textAlign="left"
@@ -42,7 +42,7 @@ export default function NavBar() {
               <Box
                 as={"span"}
                 color={useColorModeValue("blue.400", "blue.300")}
-                position={"left"}
+                position={"relative"}
                 zIndex={10}
                 _after={{
                   content: '""',

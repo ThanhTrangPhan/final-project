@@ -52,7 +52,7 @@ export default function Footer() {
           <Box
             as={"span"}
             color={useColorModeValue("blue.400", "blue.300")}
-            position={"left"}
+            position={"relative"}
             zIndex={10}
             _after={{
               content: '""',

@@ -56,14 +56,14 @@ export default function Footer() {
         <Heading
           textAlign={useBreakpointValue({ base: "center", md: "left" })}
           fontFamily={"heading"}
-          color={useColorModeValue("teal.800", "white")}
+          color={useColorModeValue("blue.800", "white")}
           as="h2"
           size="lg"
         >
           <Box
             as={"span"}
-            color={useColorModeValue("teal.400", "teal.300")}
-            position={"relative"}
+            color={useColorModeValue("blue.400", "blue.300")}
+            position={"left"}
             zIndex={10}
             _after={{
               content: '""',

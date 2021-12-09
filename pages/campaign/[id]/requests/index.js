@@ -39,7 +39,6 @@ import {
 } from "@chakra-ui/icons";
 import web3 from "../../../web3";
 import Campaign from "../../../campaign";
-import factory from "../../../factory";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;

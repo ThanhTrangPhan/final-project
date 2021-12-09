@@ -84,29 +84,29 @@ export default function NewCampaign() {
   return (
     <div>
       <Head>
-        <title>New Campaign</title>
+        <title>Chiến dịch mới</title>
         <meta name="description" content="Create New Campaign" />
-        <link rel="icon" href="/logo.svg" />
+        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main>
         <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={12} px={6}>
-          <Text fontSize={"lg"} color={"teal.400"}>
+          <Text fontSize={"lg"} color={"blue.400"}>
             <ArrowBackIcon mr={2} />
-            <NextLink href="/"> Back to Home</NextLink>
+            <NextLink href="/"> Quay lại trang chủ </NextLink>
           </Text>
           <Stack>
-            <Heading fontSize={"4xl"}>Create a New Campaign 📢</Heading>
+            <Heading fontSize={"4xl"}>Tạo 1 chiến dịch mới</Heading>
           </Stack>
           <Box
             rounded={"lg"}
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue("white", "blue.700")}
             boxShadow={"lg"}
             p={8}
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4}>
                 <FormControl id="minimumContribution">
-                  <FormLabel>Minimum Contribution Amount</FormLabel>
+                  <FormLabel>Tối thiểu</FormLabel>
                   <InputGroup>
                     {" "}
                     <Input
@@ -127,21 +127,21 @@ export default function NewCampaign() {
                   ) : null}
                 </FormControl>
                 <FormControl id="campaignName">
-                  <FormLabel>Campaign Name</FormLabel>
+                  <FormLabel>Tên chiến dịch</FormLabel>
                   <Input
                     {...register("campaignName", { required: true })}
                     isDisabled={isSubmitting}
                   />
                 </FormControl>
                 <FormControl id="description">
-                  <FormLabel>Campaign Description</FormLabel>
+                  <FormLabel>Mô tả</FormLabel>
                   <Textarea
                     {...register("description", { required: true })}
                     isDisabled={isSubmitting}
                   />
                 </FormControl>
                 <FormControl id="imageUrl">
-                  <FormLabel>Image URL</FormLabel>
+                  <FormLabel>Link ảnh</FormLabel>
                   <Input
                     {...register("imageUrl", { required: true })}
                     isDisabled={isSubmitting}
@@ -149,7 +149,7 @@ export default function NewCampaign() {
                   />
                 </FormControl>
                 <FormControl id="target">
-                  <FormLabel>Target Amount</FormLabel>
+                  <FormLabel>Gọi quỹ/vốn đạt mục tiêu: </FormLabel>
                   <InputGroup>
                     <Input
                       type="number"
@@ -184,39 +184,39 @@ export default function NewCampaign() {
                     <AlertIcon />
                     <AlertDescription mr={2}>
                       {" "}
-                      All Fields are Required
+                      Mọi mục cần điền đầy đủ 
                     </AlertDescription>
                   </Alert>
                 ) : null}
                 <Stack spacing={10}>
                   {wallet.status === "connected" ? (
                     <Button
-                      bg={"teal.400"}
+                      bg={"blue.400"}
                       color={"white"}
                       _hover={{
-                        bg: "teal.500",
+                        bg: "blue.500",
                       }}
                       isLoading={isSubmitting}
                       type="submit"
                     >
-                      Create
+                      Tạo 
                     </Button>
                   ) : (
                     <Stack spacing={3}>
                       <Button
                         color={"white"}
-                        bg={"teal.400"}
+                        bg={"blue.400"}
                         _hover={{
-                          bg: "teal.300",
+                          bg: "blue.300",
                         }}
                         onClick={() => wallet.connect()}
                       >
-                        Connect Wallet{" "}
+                        Kết nối ví{" "}
                       </Button>
                       <Alert status="warning">
                         <AlertIcon />
                         <AlertDescription mr={2}>
-                          Please Connect Your Wallet First to Create a Campaign
+                          Hãy kết nối ví của bạn
                         </AlertDescription>
                       </Alert>
                     </Stack>

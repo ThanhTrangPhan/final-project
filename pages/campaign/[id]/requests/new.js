@@ -74,38 +74,38 @@ export default function NewRequest() {
   return (
     <div>
       <Head>
-        <title>Create a Withdrawal Request</title>
-        <meta name="description" content="Create a Withdrawal Request" />
-        <link rel="icon" href="/logo.svg" />
+        <title>Tạo 1 yêu cầu rút quỹ </title>
+        <meta name="description" content="Tạo 1 yêu cầu rút quỹ" />
+        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main>
         <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={12} px={6}>
-          <Text fontSize={"lg"} color={"teal.400"} justifyContent="center">
+          <Text fontSize={"lg"} color={"blue.400"} justifyContent="center">
             <ArrowBackIcon mr={2} />
             <NextLink href={`/campaign/${id}/requests`}>
-              Back to Requests
+              Quay lại 
             </NextLink>
           </Text>
           <Stack>
-            <Heading fontSize={"4xl"}>Create a Withdrawal Request 💸</Heading>
+            <Heading fontSize={"4xl"}>Tạo yêu cầu rút quỹ </Heading>
           </Stack>
           <Box
             rounded={"lg"}
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue("white", "blue.700")}
             boxShadow={"lg"}
             p={8}
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4}>
                 <FormControl id="description">
-                  <FormLabel>Request Description</FormLabel>
+                  <FormLabel>Cho tiết </FormLabel>
                   <Textarea
                     {...register("description", { required: true })}
                     isDisabled={isSubmitting}
                   />
                 </FormControl>
                 <FormControl id="value">
-                  <FormLabel>Amount in Ether</FormLabel>
+                  <FormLabel>Số lượng ETH </FormLabel>
                   <InputGroup>
                     {" "}
                     <Input
@@ -128,7 +128,7 @@ export default function NewRequest() {
 
                 <FormControl id="recipient">
                   <FormLabel htmlFor="recipient">
-                    Recipient Ethereum Wallet Address
+                    Địa chỉ ví người nhận 
                   </FormLabel>
                   <Input
                     name="recipient"
@@ -143,7 +143,7 @@ export default function NewRequest() {
                     <AlertIcon />
                     <AlertDescription mr={2}>
                       {" "}
-                      All Fields are Required
+                      Mọi trường thông tin cần điền đầy đủ
                     </AlertDescription>
                   </Alert>
                 ) : null}
@@ -156,32 +156,32 @@ export default function NewRequest() {
                 <Stack spacing={10}>
                   {wallet.status === "connected" ? (
                     <Button
-                      bg={"teal.400"}
+                      bg={"blue.400"}
                       color={"white"}
                       _hover={{
-                        bg: "teal.500",
+                        bg: "blue.500",
                       }}
                       isLoading={isSubmitting}
                       type="submit"
                     >
-                      Create Withdrawal Request
+                      Tạo yêu cầu
                     </Button>
                   ) : (
                     <Stack spacing={3}>
                       <Button
                         color={"white"}
-                        bg={"teal.400"}
+                        bg={"blue.400"}
                         _hover={{
-                          bg: "teal.300",
+                          bg: "blue.300",
                         }}
                         onClick={() => wallet.connect()}
                       >
-                        Connect Wallet{" "}
+                        Liên kết ví {" "}
                       </Button>
                       <Alert status="warning">
                         <AlertIcon />
                         <AlertDescription mr={2}>
-                          Please Connect Your Wallet First to Create a Campaign
+                          Hãy liên kết ví của bạn 
                         </AlertDescription>
                       </Alert>
                     </Stack>

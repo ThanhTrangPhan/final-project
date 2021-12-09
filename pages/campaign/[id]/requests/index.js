@@ -110,8 +110,8 @@ const RequestRow = ({
     <Tr
       bg={
         readyToFinalize && !request.complete
-          ? useColorModeValue("teal.100", "teal.700")
-          : useColorModeValue("gray.100", "gray.700")
+          ? useColorModeValue("blue.100", "blue.700")
+          : useColorModeValue("black.100", "black.700")
       }
       opacity={request.complete ? "0.4" : "1"}
     >
@@ -123,7 +123,7 @@ const RequestRow = ({
       </Td>
       <Td>
         <Link
-          color="teal.500"
+          color="blue.500"
           href={`https://rinkeby.etherscan.io/address/${request.recipient}`}
           isExternal
         >
@@ -138,9 +138,9 @@ const RequestRow = ({
         <HStack spacing={2}>
           <Tooltip
             label={errorMessageApprove}
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue("white", "blue.700")}
             placement={"top"}
-            color={useColorModeValue("gray.800", "white")}
+            color={useColorModeValue("blue.800", "white")}
             fontSize={"1em"}
           >
             <WarningIcon
@@ -150,10 +150,10 @@ const RequestRow = ({
           </Tooltip>
           {request.complete ? (
             <Tooltip
-              label="This Request has been finalized & withdrawn to the recipient,it may then have less no of approvers"
-              bg={useColorModeValue("white", "gray.700")}
+              label="Yêu cầu này đã được biểu quyết"
+              bg={useColorModeValue("white", "blue.700")}
               placement={"top"}
-              color={useColorModeValue("gray.800", "white")}
+              color={useColorModeValue("blue.800", "white")}
               fontSize={"1em"}
             >
               <CheckCircleIcon
@@ -172,7 +172,7 @@ const RequestRow = ({
               isDisabled={disabled || request.approvalCount == approversCount}
               isLoading={loadingApprove}
             >
-              Approve
+              Đồng ý 
             </Button>
           )}
         </HStack>
@@ -180,9 +180,9 @@ const RequestRow = ({
       <Td>
         <Tooltip
           label={errorMessageFinalize}
-          bg={useColorModeValue("white", "gray.700")}
+          bg={useColorModeValue("white", "blue.700")}
           placement={"top"}
-          color={useColorModeValue("gray.800", "white")}
+          color={useColorModeValue("blue.800", "white")}
           fontSize={"1em"}
         >
           <WarningIcon
@@ -193,10 +193,10 @@ const RequestRow = ({
         </Tooltip>
         {request.complete ? (
           <Tooltip
-              label="This Request has been finalized & withdrawn to the recipient,it may then have less no of approvers"
-            bg={useColorModeValue("white", "gray.700")}
+              label="Yêu cầu này đac được biểu quyết"
+            bg={useColorModeValue("white", "blue.700")}
             placement={"top"}
-            color={useColorModeValue("gray.800", "white")}
+            color={useColorModeValue("blue.800", "white")}
             fontSize={"1em"}
           >
             <CheckCircleIcon
@@ -216,19 +216,19 @@ const RequestRow = ({
               onClick={onFinalize}
               isLoading={loadingFinalize}
             >
-              Finalize
+              Xác nhận
             </Button>
 
             <Tooltip
-              label="This Request is ready to be Finalized because it has been approved by 50% Approvers"
-              bg={useColorModeValue("white", "gray.700")}
+              label="Yêu cầu này đã đạt hơn 50% đồng ý "
+              bg={useColorModeValue("white", "blue.700")}
               placement={"top"}
-              color={useColorModeValue("gray.800", "white")}
+              color={useColorModeValue("blue.800", "white")}
               fontSize={"1.2em"}
             >
               <InfoIcon
                 as="span"
-                color={useColorModeValue("teal.800", "white")}
+                color={useColorModeValue("purple.800", "white")}
                 display={
                   readyToFinalize && !request.complete ? "inline-block" : "none"
                 }
@@ -282,9 +282,9 @@ export default function Requests({
   return (
     <div>
       <Head>
-        <title>Campaign Withdrawal Requests</title>
-        <meta name="description" content="Create a Withdrawal Request" />
-        <link rel="icon" href="/logo.svg" />
+        <title>Yêu cầu rút quỹ </title>
+        <meta name="description" content="Yêu cầu rút quỹ" />
+        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
 
       <main>
@@ -294,17 +294,17 @@ export default function Requests({
               <Text fontSize={"lg"} color={"teal.400"}>
                 <ArrowBackIcon mr={2} />
                 <NextLink href={`/campaign/${campaignId}`}>
-                  Back to Campaign
+                  Quay lại 
                 </NextLink>
               </Text>
             </Box>
             <Spacer />
             <Box py="4">
-              Campaign Balance :{" "}
+              Tổng quỹ còn lại  :{" "}
               <Text as="span" fontWeight={"bold"} fontSize="lg">
                 {balance > 0
                   ? web3.utils.fromWei(balance, "ether")
-                  : "0, Become a Donor 😄"}
+                  : "0, Đóng góp quỹ"}
               </Text>
               <Text
                 as="span"
@@ -330,8 +330,7 @@ export default function Requests({
             <Alert status="error" my={4}>
               <AlertIcon />
               <AlertDescription>
-                The Current Balance of the Campaign is 0, Please Contribute to
-                approve and finalize Requests.
+                Tổng quỹ hiện giờ là 0, hãy đóng góp!
               </AlertDescription>
             </Alert>
           ) : null}
@@ -348,7 +347,7 @@ export default function Requests({
                   isTruncated
                   maxW={"3xl"}
                 >
-                  Withdrawal Requests for {name} Campaign
+                  Các yêu cầu rút quỹ của chiến dịch {name} 
                 </Heading>
               </Box>
               <Spacer />
@@ -366,7 +365,7 @@ export default function Requests({
                       bg: "teal.300",
                     }}
                   >
-                    Add Withdrawal Request
+                    Thêm các yêu cầu rút quỹ
                   </Button>
                 </NextLink>
               </Box>
@@ -376,14 +375,14 @@ export default function Requests({
                 <Thead>
                   <Tr>
                     <Th>ID</Th>
-                    <Th w="30%">Description</Th>
-                    <Th isNumeric>Amount</Th>
+                    <Th w="30%">Chi tiết </Th>
+                    <Th isNumeric>Số lượng </Th>
                     <Th maxW="12%" isTruncated>
-                      Recipient Wallet Address
+                      Ví người nhận 
                     </Th>
-                    <Th>Approval Count </Th>
-                    <Th>Approve </Th>
-                    <Th>Finalize </Th>
+                    <Th>Số lượng chấp thuận </Th>
+                    <Th>Đồng ý </Th>
+                    <Th>Kết thúc </Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -402,7 +401,7 @@ export default function Requests({
                   })}
                 </Tbody>
                 <TableCaption textAlign="left" ml="-2">
-                  Found {requestCount} Requests
+                  Có {requestCount} yêu cầu
                 </TableCaption>
               </Table>
             </Box>
@@ -440,19 +439,18 @@ export default function Requests({
                 </Stack>
                 <Heading
                   textAlign={"center"}
-                  color={useColorModeValue("gray.800", "white")}
+                  color={useColorModeValue("blue.800", "white")}
                   as="h4"
                   size="md"
                 >
-                  No Requests yet for {name} Campaign
+                  Chưa có yêu cầu nào cho chiến dịch {name} 
                 </Heading>
                 <Text
                   textAlign={useBreakpointValue({ base: "center" })}
-                  color={useColorModeValue("gray.600", "gray.300")}
+                  color={useColorModeValue("blue.600", "blue.300")}
                   fontSize="sm"
                 >
-                  Create a Withdrawal Request to Withdraw funds from the
-                  Campaign😄
+                  Tạo yêu cầu rút quỹ 
                 </Text>
 
                 <Button
@@ -465,7 +463,7 @@ export default function Requests({
                   }}
                 >
                   <NextLink href={`/campaign/${campaignId}/requests/new`}>
-                    Create Withdrawal Request
+                    Tạo yêu cầu rút quỹ 
                   </NextLink>
                 </Button>
 
@@ -473,13 +471,13 @@ export default function Requests({
                   fontSize={"md"}
                   fontWeight={600}
                   color={"white"}
-                  bg={"gray.400"}
+                  bg={"blue.400"}
                   _hover={{
-                    bg: "gray.300",
+                    bg: "blue.300",
                   }}
                 >
                   <NextLink href={`/campaign/${campaignId}/`}>
-                    Go to Campaign
+                    Quay lại 
                   </NextLink>
                 </Button>
               </SimpleGrid>

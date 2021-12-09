@@ -157,9 +157,9 @@ export default function CampaignSingle({
   return (
     <div>
       <Head>
-        <title>Campaign Details</title>
-        <meta name="description" content="Create a Withdrawal Request" />
-        <link rel="icon" href="/logo.svg" />
+        <title>CHI TIẾT VỀ CHIẾN DỊCH</title>
+        <meta name="description" content="Các yêu cầu rút quỹ" />
+        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       {isSubmitted ? <Confetti width={width} height={height} /> : null}
       <main>
@@ -176,7 +176,7 @@ export default function CampaignSingle({
                 <AlertIcon />
                 <AlertDescription mr={2}>
                   {" "}
-                  Thank You for your Contribution 🙏
+                  Cảm ơn vì sự hỗ trợ của bạn  🙏
                 </AlertDescription>
                 <CloseButton
                   position="absolute"
@@ -208,11 +208,11 @@ export default function CampaignSingle({
                 {description}
               </Text>
               <Link
-                color="teal.500"
+                color="blue.500"
                 href={`https://rinkeby.etherscan.io/address/${id}`}
                 isExternal
               >
-                View on Rinkeby Etherscan <ExternalLinkIcon mx="2px" />
+                Xem trên Rinkeby Etherscan <ExternalLinkIcon mx="2px" />
               </Link>
               <Box mx={"auto"} w={"full"}>
                 <SimpleGrid columns={{ base: 1 }} spacing={{ base: 5 }}>
@@ -226,28 +226,28 @@ export default function CampaignSingle({
                       minimumContribution
                     )})`}
                     info={
-                      "You must contribute at least this much in Wei ( 1 ETH = 10 ^ 18 Wei) to become an approver"
+                      "Lượng tối thiểu Wei ( 1 ETH = 10 ^ 18 Wei) cần để trở thành người tham gia quỹ "
                     }
                   />
                   <StatsCard
-                    title={"Wallet Address of Campaign Creator"}
+                    title={"Địa chỉ ví của người/tổ chức tạo chiến dịch"}
                     stat={manager}
                     info={
-                      "The Campaign Creator created the campaign and can create requests to withdraw money."
+                      "Người/Tổ chức tạo chiến dịch có thể yêu cầu rút tiền "
                     }
                   />
                   <StatsCard
-                    title={"Number of Requests"}
+                    title={"Số kượng yêu cầu "}
                     stat={requestsCount}
                     info={
-                      "A request tries to withdraw money from the contract. Requests must be approved by approvers"
+                      "Yêu cầu rút quỹ cần được thông qua với hơn 50% biểu quyết đồng ý "
                     }
                   />
                   <StatsCard
-                    title={"Number of Approvers"}
+                    title={"Số lựogn người chấp nhận yêu cầu"}
                     stat={approversCount}
                     info={
-                      "Number of people who have already donated to this campaign"
+                      "Số lượng người đã tham gia gây quỹ cho chiến dịch này "
                     }
                   />
                 </SimpleGrid>
@@ -256,7 +256,7 @@ export default function CampaignSingle({
             <Stack spacing={{ base: 4 }}>
               <Box>
                 <Stat
-                  bg={useColorModeValue("white", "gray.700")}
+                  bg={useColorModeValue("white", "blue.700")}
                   boxShadow={"lg"}
                   rounded={"xl"}
                   p={{ base: 4, sm: 6, md: 8 }}
@@ -265,19 +265,18 @@ export default function CampaignSingle({
                   <StatLabel fontWeight={"medium"}>
                     <Text as="span" isTruncated mr={2}>
                       {" "}
-                      Campaign Balance
+                      Tổng quỹ 
                     </Text>
                     <Tooltip
-                      label="The balance is how much money this campaign has left to
-                  spend."
-                      bg={useColorModeValue("white", "gray.700")}
+                      label="Số lượng quỹ còn lại "
+                      bg={useColorModeValue("white", "blue.700")}
                       placement={"top"}
-                      color={useColorModeValue("gray.800", "white")}
+                      color={useColorModeValue("blue.800", "white")}
                       fontSize={"1em"}
                       px="4"
                     >
                       <InfoIcon
-                        color={useColorModeValue("teal.800", "white")}
+                        color={useColorModeValue("blue.800", "white")}
                       />
                     </Tooltip>
                   </StatLabel>
@@ -318,7 +317,7 @@ export default function CampaignSingle({
                       {getWEIPriceInUSD(ETHPrice, target)})
                     </Text>
                     <Progress
-                      colorScheme="teal"
+                      colorScheme="blue"
                       size="sm"
                       value={web3.utils.fromWei(balance, "ether")}
                       max={web3.utils.fromWei(target, "ether")}
@@ -328,7 +327,7 @@ export default function CampaignSingle({
                 </Stat>
               </Box>
               <Stack
-                bg={useColorModeValue("white", "gray.700")}
+                bg={useColorModeValue("white", "blue.700")}
                 boxShadow={"lg"}
                 rounded={"xl"}
                 p={{ base: 4, sm: 6, md: 8 }}
@@ -337,16 +336,16 @@ export default function CampaignSingle({
                 <Heading
                   lineHeight={1.1}
                   fontSize={{ base: "2xl", sm: "3xl" }}
-                  color={useColorModeValue("teal.600", "teal.200")}
+                  color={useColorModeValue("blue.600", "blue.200")}
                 >
-                  Contribute Now!
+                  Đóng góp vì cộng đồng !
                 </Heading>
 
                 <Box mt={10}>
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl id="value">
                       <FormLabel>
-                        Amount in Ether you want to contribute
+                        Số lượng ETH bạn muốn đóng góp 
                       </FormLabel>
                       <InputGroup>
                         {" "}
@@ -392,13 +391,13 @@ export default function CampaignSingle({
                           isDisabled={amountInUSD ? false : true}
                           type="submit"
                         >
-                          Contribute
+                          Đóng góp
                         </Button>
                       ) : (
                         <Alert status="warning" mt={4}>
                           <AlertIcon />
                           <AlertDescription mr={2}>
-                            Please Connect Your Wallet to Contribute
+                            Hãy liên kết với ví của bạn 
                           </AlertDescription>
                         </Alert>
                       )}
@@ -408,7 +407,7 @@ export default function CampaignSingle({
               </Stack>
 
               <Stack
-                bg={useColorModeValue("white", "gray.700")}
+                bg={useColorModeValue("white", "blue.700")}
                 boxShadow={"lg"}
                 rounded={"xl"}
                 p={{ base: 4, sm: 6, md: 8 }}
@@ -425,12 +424,11 @@ export default function CampaignSingle({
                       boxShadow: "xl",
                     }}
                   >
-                    View Withdrawal Requests
+                    Xem các yêu cầu rút quỹ 
                   </Button>
                 </NextLink>
                 <Text fontSize={"sm"}>
-                  * You can see where these funds are being used & if you have
-                  contributed you can also approve those Withdrawal Requests :)
+                  * Bây giờ bạn có thể xem các yêu cầu rút quỹ của người/tổ chức chiến dịch và có quyền biểu quyết chấp nhận yêu cầu
                 </Text>
               </Stack>
             </Stack>

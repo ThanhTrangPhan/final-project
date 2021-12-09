@@ -157,7 +157,7 @@ function CampaignCard({
                 <Text as="span" fontWeight={"bold"}>
                   {balance > 0
                     ? web3.utils.fromWei(balance, "ether")
-                    : "0, Become a Donor 😄"}
+                    : "0, Ủng hộ dự án "}
                 </Text>
                 <Text
                   as="span"
@@ -184,7 +184,7 @@ function CampaignCard({
                 {getWEIPriceInUSD(ethPrice, target)})
               </Text>
               <Progress
-                colorScheme="teal"
+                colorScheme="purple"
                 size="sm"
                 value={web3.utils.fromWei(balance, "ether")}
                 max={web3.utils.fromWei(target, "ether")}
@@ -227,12 +227,12 @@ export default function Home({ campaigns }) {
   return (
     <div>
       <Head>
-        <title>BetterFund</title>
+        <title>Diều Xanh </title>
         <meta
           name="description"
-          content="Transparent Crowdfunding in Blockchain"
+          content="Nền tảng kêu gọi vốn cộng đồng dựa trên công nghệ Blockchain"
         />
-        <link rel="icon" href="/logo.svg" />
+        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main className={styles.main}>
         <Container py={{ base: "4", md: "12" }} maxW={"7xl"} align={"left"}>
@@ -244,7 +244,7 @@ export default function Home({ campaigns }) {
             as="h1"
             py={4}
           >
-            Crowdfunding using the powers of <br /> Crypto & Blockchain 😄{" "}
+            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain 😄{" "}
           </Heading>
           <NextLink href="/campaign/new">
             <Button
@@ -252,9 +252,9 @@ export default function Home({ campaigns }) {
               fontSize={"md"}
               fontWeight={600}
               color={"white"}
-              bg={"teal.400"}
+              bg={"black.400"}
               _hover={{
-                bg: "teal.300",
+                bg: "gray.300",
               }}
             >
               Create Campaign
@@ -265,7 +265,7 @@ export default function Home({ campaigns }) {
           <HStack spacing={2}>
             <SkeletonCircle size="4" />
             <Heading as="h2" size="lg">
-              Open Campaigns
+              Các chiến dịch,dự án đang hoạt động
             </Heading>
           </HStack>
 
@@ -302,38 +302,38 @@ export default function Home({ campaigns }) {
           <HStack spacing={2}>
             <SkeletonCircle size="4" />
             <Heading as="h2" size="lg">
-              How BetterFund Works
+              Hoạt động
             </Heading>
           </HStack>
           <Divider marginTop="4" />
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} py={8}>
             <Feature
               icon={<Icon as={FcDonate} w={10} h={10} />}
-              title={"Create a Campaign for Fundraising"}
+              title={"Bắt đầu một chiến dịch"}
               text={
-                "It’ll take only 2 minutes. Just enter a few details about the funds you are raising for."
+                "Điền đầy đủ thông tin chiến dịch bạn muốn kêu gọi"
               }
             />
             <Feature
               icon={<Icon as={FcShare} w={10} h={10} />}
-              title={"Share your Campaign"}
+              title={"Chia sẻ chiến dịch"}
               text={
-                "All you need to do is share the Campaign with your friends, family and others. In no time, support will start pouring in."
+                "Chia sẻ trên mọi nền tảng mạng xã hội bạn muốn để nhiều người biết đến"
               }
             />
             <Feature
               icon={<Icon as={FcMoneyTransfer} w={10} h={10} />}
-              title={"Request and Withdraw Funds"}
+              title={"Đưa ra yêu cầu rút quỹ"}
               text={
-                "The funds raised can be withdrawn directly to the recipient when 50% of the contributors approve of the Withdrawal Request."
+                "Yêu cầu hơn 50% người tham gia gây quỹ đồng ý cho tổ chức/người tạo chiến dịch rút quỹ"
               }
             />
           </SimpleGrid>
           <Heading as="h2" size="lg" mt="8">
-            For any queries raise an issue on{" "}
+            Nếu có bất kì vấn đề gì, hãy liên hệ qua {" "}
             <Link
               color="teal.500"
-              href="https://github.com/harsh242/betterfund-crowdfunding-in-blockchain/issues"
+              href="https://github.com/"
               isExternal
             >
               the Github Repo <ExternalLinkIcon mx="2px" />

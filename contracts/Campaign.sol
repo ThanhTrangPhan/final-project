@@ -78,7 +78,7 @@ contract Campaign {
         approversCount++;
     }
 
-    uint256 numRequests;
+    uint256 numRequests=0;
 
     function createRequest(
         string memory description,

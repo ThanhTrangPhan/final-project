@@ -4,7 +4,7 @@ import CampaignFactory from "../artifacts/contracts/Campaign.sol/CampaignFactory
 
 const instance = new web3.eth.Contract(
   CampaignFactory.abi,
-  "0xCb1A04f5B0BcedA3a9AA7BcA433469757Ff88754"
+  "0x6fBc74b5ac5E2B6Da40E0A6f2814f5757A815091"
 );
 
 export default instance;

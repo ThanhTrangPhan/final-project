@@ -154,6 +154,11 @@ function CampaignCard({
                 maxW={{ base: "	15rem", sm: "sm" }}
                 pt="2"
               >
+                <Text as="span"
+                  display={balance > 0 ? "inline" : "none"}
+                  pr={2}
+                  fontWeight={"bold"}
+                > Đạt được  {" "}</Text>
                 <Text as="span" fontWeight={"bold"}>
                   {balance > 0
                     ? web3.utils.fromWei(balance, "ether")
@@ -164,10 +169,9 @@ function CampaignCard({
                   display={balance > 0 ? "inline" : "none"}
                   pr={2}
                   fontWeight={"bold"}
-                >
-                  Đã đạt được 
+                > 
                   {" "}
-                  ETH
+                  ETH 
                 </Text>
                 <Text
                   as="span"

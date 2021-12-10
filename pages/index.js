@@ -250,15 +250,16 @@ export default function Home({ campaigns }) {
             as="h1"
             py={4}
           >
-            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain {" "}
+            Tận dụng các tính năng nổi bật của Crypto & Blockchain {" "}
           </Heading>
           <NextLink href="/campaign/new">
             <Button
               display={{ sm: "inline-flex" }}
               fontSize={"md"}
               fontWeight={600}
+              position = "center"
               color={"white"}
-              bg={"gray.400"}
+              bg={"black.200"}
               _hover={{
                 bg: "blue.700",
               }}

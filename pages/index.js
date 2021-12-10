@@ -74,6 +74,7 @@ function CampaignCard({
   target,
   ethPrice,
 }) {
+  if (imageURL.cont)
   return (
     <NextLink href={`/campaign/${id}`}>
       <Box
@@ -93,7 +94,7 @@ function CampaignCard({
       >
         <Box height="18em">
           <Img
-            src="./poster.png"
+            src={imageURL}
             alt={`Picture of ${name}`}
             roundedTop="lg"
             objectFit="cover"
@@ -120,7 +121,7 @@ function CampaignCard({
             </Box>
 
             <Tooltip
-              label="Contribute"
+              label="Ủng hộ chiến dịch"
               bg={useColorModeValue("white", "blue.700")}
               placement={"top"}
               color={useColorModeValue("blue.800", "white")}

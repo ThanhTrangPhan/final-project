@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/demo/visualstudioProject/cf-dapp/contracts/Campaign.sol": {
-      "lastModificationDate": 1639107533479,
-      "contentHash": "4448bb67faf2815749007551a1c48161",
+      "lastModificationDate": 1639117261944,
+      "contentHash": "01a16861f8dec1df4d0cc879c16e2346",
       "sourceName": "contracts/Campaign.sol",
       "solcConfig": {
         "version": "0.8.0",

@@ -62,7 +62,7 @@ export default function NewCampaign() {
     );
     try {
       const accounts = await web3.eth.getAccounts();
-      await factory.methods
+      const transaction = await factory.methods
         .createCampaign(
           web3.utils.toWei(data.minimumContribution, "ether"),
           data.campaignName,
@@ -73,7 +73,7 @@ export default function NewCampaign() {
         .send({
           from: accounts[0],
         });
-
+      console.log(transaction);
       router.push("/");
     } catch (err) {
       setError(err.message);

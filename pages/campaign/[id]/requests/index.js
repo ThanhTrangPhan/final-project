@@ -150,7 +150,7 @@ const RequestRow = ({
           </Tooltip>
           {request.complete ? (
             <Tooltip
-              label="Yêu cầu này đã được biểu quyết"
+              label="Yêu cầu này đã được giải quyết "
               bg={useColorModeValue("white", "blue.700")}
               placement={"top"}
               color={useColorModeValue("blue.800", "white")}
@@ -193,7 +193,7 @@ const RequestRow = ({
         </Tooltip>
         {request.complete ? (
           <Tooltip
-              label="Yêu cầu này đac được biểu quyết"
+              label="Yêu cầu này đã được giải quyết"
             bg={useColorModeValue("white", "blue.700")}
             placement={"top"}
             color={useColorModeValue("blue.800", "white")}

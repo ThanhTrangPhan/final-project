@@ -137,10 +137,11 @@ export default function CampaignSingle({
     try {
       const campaign = Campaign(id);
       const accounts = await web3.eth.getAccounts();
-      await campaign.methods.contribute().send({
+      const transaction = await campaign.methods.contribute().send({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
+      console.log(transaction);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
       reset("", {
@@ -313,7 +314,7 @@ export default function CampaignSingle({
                     </Box>
 
                     <Text fontSize={"md"} fontWeight="normal">
-                      target of {web3.utils.fromWei(target, "ether")} ETH ($
+                      / {web3.utils.fromWei(target, "ether")} ETH ($
                       {getWEIPriceInUSD(ETHPrice, target)})
                     </Text>
                     <Progress

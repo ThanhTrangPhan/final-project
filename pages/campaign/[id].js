@@ -266,7 +266,7 @@ export default function CampaignSingle({
                   <StatLabel fontWeight={"medium"}>
                     <Text as="span" isTruncated mr={2}>
                       {" "}
-                      Tổng quỹ 
+                      Tổng quỹ
                     </Text>
                     <Tooltip
                       label="Số lượng quỹ còn lại "
@@ -346,7 +346,7 @@ export default function CampaignSingle({
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl id="value">
                       <FormLabel>
-                        Số lượng ETH bạn muốn đóng góp 
+                        Số lượng ETH bạn muốn đóng góp
                       </FormLabel>
                       <InputGroup>
                         {" "}
@@ -398,7 +398,7 @@ export default function CampaignSingle({
                         <Alert status="warning" mt={4}>
                           <AlertIcon />
                           <AlertDescription mr={2}>
-                            Hãy liên kết với ví của bạn 
+                            Hãy liên kết với ví của bạn
                           </AlertDescription>
                         </Alert>
                       )}
@@ -425,13 +425,61 @@ export default function CampaignSingle({
                       boxShadow: "xl",
                     }}
                   >
-                    Xem các yêu cầu rút quỹ 
+                    Xem các yêu cầu rút quỹ
                   </Button>
                 </NextLink>
                 <Text fontSize={"sm"}>
                   * Bây giờ bạn có thể xem các yêu cầu rút quỹ của người/tổ chức chiến dịch và có quyền biểu quyết chấp nhận yêu cầu
                 </Text>
               </Stack>
+              <Stack
+                bg={useColorModeValue("white", "blue.700")}
+                boxShadow={"lg"}
+                rounded={"xl"}
+                p={{ base: 4, sm: 6, md: 8 }}
+                spacing={4}
+              >
+                <Text fontSize={"lf"}>
+                  * Các giao dịch ủng hộ
+                </Text>
+                <Table size='sm'>
+                  <Thead>
+                    <Tr>
+                      <Th>To convert</Th>
+                      <Th>into</Th>
+                      <Th isNumeric>multiply by</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr>
+                      <Td>inches</Td>
+                      <Td>millimetres (mm)</Td>
+                      <Td isNumeric>25.4</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>feet</Td>
+                      <Td>centimetres (cm)</Td>
+                      <Td isNumeric>30.48</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>yards</Td>
+                      <Td>metres (m)</Td>
+                      <Td isNumeric>0.91444</Td>
+                    </Tr>
+                  </Tbody>
+                  <Tfoot>
+                    <Tr>
+                      <Th>To convert</Th>
+                      <Th>into</Th>
+                      <Th isNumeric>multiply by</Th>
+                    </Tr>
+                  </Tfoot>
+                </Table>
+                <Text fontSize={"sm"}>
+                  * Bây giờ bạn có thể xem các yêu cầu rút quỹ của người/tổ chức chiến dịch và có quyền biểu quyết chấp nhận yêu cầu
+                </Text>
+              </Stack>
+
             </Stack>
           </Container>
         </Box>

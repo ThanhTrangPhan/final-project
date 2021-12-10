@@ -73,7 +73,7 @@ export default function NewCampaign() {
         .send({
           from: accounts[0],
         });
-      console.log(transaction);
+      
       router.push("/");
     } catch (err) {
       setError(err.message);

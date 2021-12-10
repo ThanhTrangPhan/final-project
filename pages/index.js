@@ -240,16 +240,16 @@ export default function Home({ campaigns }) {
         <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main className={styles.main}>
-        <Container py={{ base: "4", md: "12" }} maxW={"7xl"} align={"left"}>
+        <Container py={{ base: "4", md: "12" }} maxW={"7xl"} align={"left"} position ="relative">
           {" "}
           <Heading
-            textAlign={useBreakpointValue({ base: "left" })}
+            textAlign={useBreakpointValue({ base: "center" })}
             fontFamily={"heading"}
             color={useColorModeValue("blue.800", "white")}
             as="h1"
             py={4}
           >
-            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain {" "}
+             Nền tảng kêu gọi vốn cộng đồng dựa trên công nghệ Blockchain{" "}
           </Heading>
           <NextLink href="/campaign/new">
             <Button

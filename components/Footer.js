@@ -65,7 +65,7 @@ export default function Footer() {
               zIndex: -1,
             }}
           >
-            <NextLink href="/">Diều xanh</NextLink>
+            <NextLink href="/">DIỀU XANH</NextLink>
           </Box>
         </Heading>
         <Stack direction={"row"} spacing={6}>

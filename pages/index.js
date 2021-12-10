@@ -74,7 +74,6 @@ function CampaignCard({
   target,
   ethPrice,
 }) {
-  if (imageURL.cont)
   return (
     <NextLink href={`/campaign/${id}`}>
       <Box
@@ -250,7 +249,7 @@ export default function Home({ campaigns }) {
             as="h1"
             py={4}
           >
-            Tận dụng các tính năng nổi bật của Crypto & Blockchain {" "}
+            Tận dụng các tính năng nổi bật của  <br /> Crypto & Blockchain {" "}
           </Heading>
           <NextLink href="/campaign/new">
             <Button
@@ -258,7 +257,7 @@ export default function Home({ campaigns }) {
               fontSize={"md"}
               fontWeight={600}
               color={"white"}
-              bg={"black.200"}
+              bg={"gray.400"}
               _hover={{
                 bg: "blue.700",
               }}

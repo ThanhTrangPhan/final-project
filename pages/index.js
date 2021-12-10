@@ -257,7 +257,6 @@ export default function Home({ campaigns }) {
               display={{ sm: "inline-flex" }}
               fontSize={"md"}
               fontWeight={600}
-              position = "center"
               color={"white"}
               bg={"black.200"}
               _hover={{

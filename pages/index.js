@@ -165,6 +165,7 @@ function CampaignCard({
                   pr={2}
                   fontWeight={"bold"}
                 >
+                  Đã đạt được 
                   {" "}
                   ETH
                 </Text>
@@ -180,7 +181,7 @@ function CampaignCard({
               </Box>
 
               <Text fontSize={"md"} fontWeight="normal">
-                target of {web3.utils.fromWei(target, "ether")} ETH ($
+                trên tổng mục tiêu {web3.utils.fromWei(target, "ether")} ETH ($
                 {getWEIPriceInUSD(ethPrice, target)})
               </Text>
               <Progress

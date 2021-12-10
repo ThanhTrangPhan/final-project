@@ -55,8 +55,7 @@ export default function NavBar() {
                   zIndex: -1,
                 }}
               >
-              
-                <NextLink href="/"> Diều Xanh</NextLink>
+                <NextLink href="/" img = "../"> Diều Xanh</NextLink>
               </Box>
             </Heading>
           </Flex>

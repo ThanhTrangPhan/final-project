@@ -35,6 +35,7 @@ import {
   CloseButton,
   FormHelperText,
   Link,
+  Table, Thead, Tr, Tfoot,Tbody
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
@@ -50,7 +51,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
-
+  
   return {
     props: {
       id: campaignId,
@@ -66,6 +67,16 @@ export async function getServerSideProps({ params }) {
       ETHPrice,
     },
   };
+}
+
+const DonationRow =({
+  id,
+  donatorAddress,
+  value,
+  transaction
+})=>{
+  const router = useRouter();
+  const onConfirm = async
 }
 
 function StatsCard(props) {
@@ -141,7 +152,7 @@ export default function CampaignSingle({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
-      console.log(transaction);
+      console.log(transaction.transactionHash);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
       reset("", {
@@ -177,7 +188,7 @@ export default function CampaignSingle({
                 <AlertIcon />
                 <AlertDescription mr={2}>
                   {" "}
-                  Cảm ơn vì sự hỗ trợ của bạn  🙏
+                  Cảm ơn vì sự hỗ trợ của bạn rất nhiều !
                 </AlertDescription>
                 <CloseButton
                   position="absolute"
@@ -442,12 +453,13 @@ export default function CampaignSingle({
                 <Text fontSize={"lf"}>
                   * Các giao dịch ủng hộ
                 </Text>
-                <Table size='sm'>
+                {/* <Table size='sm'>
                   <Thead>
                     <Tr>
-                      <Th>To convert</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
+                      <Th>STT</Th>
+                      <Th w="30%">Địa chỉ ví</Th>
+                      <Th isNumeric>Số lượng</Th>
+                      <Th maxW="20%">Giao dịch</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
@@ -474,7 +486,7 @@ export default function CampaignSingle({
                       <Th isNumeric>multiply by</Th>
                     </Tr>
                   </Tfoot>
-                </Table>
+                </Table> */}
                 <Text fontSize={"sm"}>
                   * Bây giờ bạn có thể xem các yêu cầu rút quỹ của người/tổ chức chiến dịch và có quyền biểu quyết chấp nhận yêu cầu
                 </Text>

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "hardhat/console.sol";
+
 
 contract CampaignFactory {
     Campaign[] public deployedCampaigns;
@@ -38,6 +38,12 @@ contract Campaign {
         mapping(address => bool) approvals;
     }
 
+    struct Contributor{
+        address contributorAddress;
+        uint value;
+        string transactionHash;
+    }
+
     Request[] public requests;
     address public manager;
     uint256 public minimunContribution;
@@ -45,7 +51,7 @@ contract Campaign {
     string public CampaignDescription;
     string public imageUrl;
     uint256 public targetToAchieve;
-    address[] public contributers;
+    Contributor[] public contributors;
     mapping(address => bool) public approvers;
     uint256 public approversCount;
     uint256 public amount=0; 
@@ -54,6 +60,8 @@ contract Campaign {
         require(msg.sender == manager);
         _;
     }
+    
+    event Contributing(address contributor,uint256 amount);
 
     constructor(
         uint256 minimum,
@@ -71,18 +79,35 @@ contract Campaign {
         targetToAchieve = target;
     }
 
-    function contribute() public payable {
+    function contribute() public payable{
         require(msg.value > minimunContribution);
-        contributers.push(msg.sender);
         approvers[msg.sender] = true;
-        approversCount++;
+        uint i=0;
+        uint no = contributors.length;
+        for(i;i<no;i+=1){
+            if(msg.sender == contributors[i].contributorAddress){
+                approversCount++;
+        }
+        }
     }
-
+    function viewContributor() public view returns (Contributor[] memory){
+        return contributors;
+    }
+    function setContributorList(address contributorAddress, uint256 value, string memory transactionHash) public {
+        Contributor memory contributor = Contributor({
+            contributorAddress:contributorAddress,
+            value: value,
+            transactionHash: transactionHash
+        });
+        contributors.push(contributor);
+    }
+    
     uint256 public numRequests ;
     
     function viewRequest() public view returns (uint256){
         return numRequests;
     }
+
     function createRequest(
         string memory description,
         uint value,
@@ -95,15 +120,7 @@ contract Campaign {
         r.recipient = recipient;
         r.complete = false;
         r.approvalCount = 0;
-        numRequests+=1;
-        // Request memory req =  Request({
-        //     description:description,
-        //     value:value,
-        //     recipient:recipient,
-        //     complete:false,
-        //     approvalCount:0
-        // });
-        
+        numRequests+=1;        
     }
 
     function approveRequest(uint256 index) public {
@@ -134,7 +151,7 @@ contract Campaign {
             string memory,
             string memory,
             uint256,
-            uint256
+            uint256,
         )
     {
         return (
@@ -146,12 +163,13 @@ contract Campaign {
             CampaignName,
             CampaignDescription,
             imageUrl,
+            contributors.length,
             targetToAchieve,
-            address(this).balance
         );
     }
 
     function getRequestsCount() public view returns (uint256) {
         return requests.length;
     }
+    
 }

@@ -45,6 +45,7 @@ import Confetti from "react-confetti";
 import web3 from "../../service/web3";
 import Campaign from "../../service/campaign";
 import factory from "../../service/factory";
+import campaign from "../../service/campaign";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;
@@ -63,20 +64,11 @@ export async function getServerSideProps({ params }) {
       name: summary[5],
       description: summary[6],
       image: summary[7],
-      target: summary[8],
+      contributorsCount:summary[8],
+      target: summary[9],
       ETHPrice,
     },
   };
-}
-
-const DonationRow =({
-  id,
-  donatorAddress,
-  value,
-  transaction
-})=>{
-  const router = useRouter();
-  const onConfirm = async
 }
 
 function StatsCard(props) {
@@ -131,6 +123,7 @@ export default function CampaignSingle({
   name,
   description,
   image,
+  contributorsCount,
   target,
   ETHPrice,
 }) {
@@ -140,25 +133,45 @@ export default function CampaignSingle({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [amountInUSD, setAmountInUSD] = useState();
+  const [contributorsList, setContributorsList] = useState();
   const wallet = useWallet();
   const router = useRouter();
   const { width, height } = useWindowSize();
+  const campaign = Campaign(id);
+  async function getContributors(){
+    try {
+      const contributors = await Promise.all(
+        Array(parseInt(contributorsCount))
+        .fill()
+        .map((contr,index)=>{
+          return campaign.methods.contributors(index).call();
+        })
+      );
+      console.log("contributors ", contributors);
+      setContributorsList(contributors);
+      return contributors;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function onSubmit(data) {
     console.log(data);
     try {
-      const campaign = Campaign(id);
+     
       const accounts = await web3.eth.getAccounts();
       const transaction = await campaign.methods.contribute().send({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
-      console.log(transaction.transactionHash);
+      console.log(transaction);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
       reset("", {
         keepValues: false,
       });
       setIsSubmitted(true);
+      
       setError(false);
     } catch (err) {
       setError(err.message);
@@ -487,9 +500,7 @@ export default function CampaignSingle({
                     </Tr>
                   </Tfoot>
                 </Table> */}
-                <Text fontSize={"sm"}>
-                  * Bây giờ bạn có thể xem các yêu cầu rút quỹ của người/tổ chức chiến dịch và có quyền biểu quyết chấp nhận yêu cầu
-                </Text>
+                
               </Stack>
 
             </Stack>

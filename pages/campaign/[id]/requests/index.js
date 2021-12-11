@@ -390,7 +390,7 @@ export default function Requests({
                     return (
                       <RequestRow
                         key={index}
-                        id={index}
+                        id={index+1}
                         request={request}
                         approversCount={approversCount}
                         campaignId={campaignId}

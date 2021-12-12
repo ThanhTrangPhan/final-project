@@ -52,7 +52,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
-  const contributorsCount = await campaign.methods.getContributorsCount().call;
+  
 
   return {
     props: {
@@ -209,6 +209,7 @@ export default function CampaignSingle({
 
   async function getContributors() {
     try {
+      const contributorsCount = await campaign.methods.getContributorsCount().call;
       console.log("contributors ", contributorsCount);
       const contributors = await Promise.all(
         Array(parseInt(contributorsCount))

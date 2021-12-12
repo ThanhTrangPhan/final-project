@@ -79,7 +79,6 @@ contract Campaign {
     }
 
     function contribute() public payable {
-        
         require(msg.value >= minimumContribution);
         approvers[msg.sender] = true;
         uint256 i = 0;
@@ -100,8 +99,6 @@ contract Campaign {
     function viewContributor() public view returns (Contributor[] memory) {
         return contributors;
     }
-
-
 
     uint256 public numRequests;
 
@@ -132,7 +129,7 @@ contract Campaign {
     }
 
     function finalizeRequest(uint256 index) public restricted {
-        require(requests[index].approvalCount > (approversCount / 2));
+        require(requests[index].approvalCount >= (approversCount / 2));
         require(!requests[index].complete);
         address payable rec = payable(requests[index].recipient);
         rec.transfer(requests[index].value);

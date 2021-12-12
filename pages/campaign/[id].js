@@ -180,14 +180,13 @@ export default function CampaignSingle({
   async function onSubmit(data) {
     console.log(data);
     try {
-
+      const campaign = Campaign(id);
       const accounts = await web3.eth.getAccounts();
-      const transaction = await campaign.methods.contribute().send({
+      await campaign.methods.contribute().send({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
-
-      console.log(transaction);
+      
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
       reset("", {

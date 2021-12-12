@@ -116,7 +116,7 @@ const RequestRow = ({
       }
       opacity={request.complete ? "0.4" : "1"}
     >
-      <Td>{id} </Td>
+      <Td>{id+1} </Td>
       <Td>{request.description}</Td>
       <Td isNumeric>
         {web3.utils.fromWei(request.value, "ether")}ETH ($
@@ -391,7 +391,7 @@ export default function Requests({
                     return (
                       <RequestRow
                         key={index}
-                        id={index+1}
+                        id={index}
                         request={request}
                         approversCount={approversCount}
                         campaignId={campaignId}

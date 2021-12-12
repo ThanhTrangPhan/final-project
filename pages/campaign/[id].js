@@ -209,6 +209,7 @@ export default function CampaignSingle({
 
   async function getContributors() {
     try {
+      console.log("contributors ", contributorsCount);
       const contributors = await Promise.all(
         Array(parseInt(contributorsCount))
           .fill()
@@ -216,7 +217,7 @@ export default function CampaignSingle({
             return campaign.methods.contributors(index).call();
           })
       );
-      console.log("contributors ", contributors);
+      
       setContributorsList(contributors);
       return contributors;
     } catch (error) {

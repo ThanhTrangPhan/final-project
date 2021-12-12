@@ -287,7 +287,7 @@ export default function Home({ campaigns }) {
                       creatorId={el[4]}
                       imageURL={el[7]}
                       id={campaigns[i]}
-                      target={el[8]}
+                      target={el[9]}
                       balance={el[1]}
                       ethPrice={ethPrice}
                     />

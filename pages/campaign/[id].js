@@ -182,22 +182,6 @@ export default function CampaignSingle({
   const router = useRouter();
   const { width, height } = useWindowSize();
   const campaign = Campaign(id);
-  async function getContributors() {
-    try {
-      const contributors = await Promise.all(
-        Array(parseInt(contributorsCount))
-          .fill()
-          .map((contr, index) => {
-            return campaign.methods.contributors(index).call();
-          })
-      );
-      console.log("contributors ", contributors);
-      setContributorsList(contributors);
-      return contributors;
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async function onSubmit(data) {
     console.log(data);
@@ -217,15 +201,31 @@ export default function CampaignSingle({
       });
       setIsSubmitted(true);
       setError(false);
-      getContributors();
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   }
-  // useEffect(() => {
-  //   getContributors();
-  // }, []);
+
+  async function getContributors() {
+    try {
+      const contributors = await Promise.all(
+        Array(parseInt(contributorsCount))
+          .fill()
+          .map((contr, index) => {
+            return campaign.methods.contributors(index).call();
+          })
+      );
+      console.log("contributors ", contributors);
+      setContributorsList(contributors);
+      return contributors;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getContributors();
+  }, []);
 
   return (
     <div>

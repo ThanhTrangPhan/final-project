@@ -52,6 +52,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
+  const contributorsCount= await campaign.methods.getContributorsCount().call;
 
   return {
     props: {
@@ -64,7 +65,7 @@ export async function getServerSideProps({ params }) {
       name: summary[5],
       description: summary[6],
       image: summary[7],
-      contributorsCount: summary[8],
+      contributorsCount: contributorsCount,
       target: summary[9],
       ETHPrice,
     },
@@ -74,10 +75,9 @@ export async function getServerSideProps({ params }) {
 const ContributorRow = ({
   id,
   contributor,
-  transactionHash,
   ETHPrice,
 }) => {
-  const router = useRouter();
+  
   return (
     <Tr>
       <Td>{id} </Td>
@@ -204,7 +204,7 @@ export default function CampaignSingle({
         value: web3.utils.toWei(data.value, "ether"),
       });
       await campaign.methods
-        .setContributorsList(
+        .setContributorList(
           accounts[0],
           web3.utils.toWei(data.value, "ether"),
           transaction.transactionHash)

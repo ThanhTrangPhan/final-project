@@ -171,5 +171,7 @@ contract Campaign {
     function getRequestsCount() public view returns (uint256) {
         return requests.length;
     }
-    
+    function getContributorsCount() public view returns (uint256) {
+        return contributors.length;
+    }
 }

@@ -40,6 +40,7 @@ import {
 import web3 from "../../../../service/web3";
 import Campaign from "../../../../service/campaign";
 import factory from "../../../../service/factory";
+
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;
   const campaign = Campaign(campaignId);

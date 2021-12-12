@@ -35,7 +35,7 @@ import {
   CloseButton,
   FormHelperText,
   Link,
-  Table, Thead, Tr, Tfoot, Tbody,Th
+  Table, Thead, Tr, Tfoot, Tbody, Th
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
@@ -52,7 +52,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
-  const contributorsCount= await campaign.methods.getContributorsCount().call;
+  const contributorsCount = await campaign.methods.getContributorsCount().call;
 
   return {
     props: {
@@ -77,9 +77,14 @@ const ContributorRow = ({
   contributor,
   ETHPrice,
 }) => {
-  
   return (
-    <Tr>
+    <Tr
+      bg={
+        readyToFinalize && !request.complete
+          ? useColorModeValue("blue.100", "blue.700")
+          : useColorModeValue("black.100", "black.700")
+      }
+    >
       <Td>{id} </Td>
       <Td>
         <Link
@@ -105,7 +110,7 @@ const ContributorRow = ({
           {contributor.transactionHash.substr(0, 10) + "..."}
         </Link>
       </Td> */}
-      
+
     </Tr>
   );
 };
@@ -203,7 +208,7 @@ export default function CampaignSingle({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
-      
+
       console.log(transaction);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
@@ -211,16 +216,16 @@ export default function CampaignSingle({
         keepValues: false,
       });
       setIsSubmitted(true);
-
       setError(false);
+      getContributors();
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   }
-  useEffect(() => {
-    getContributors();
-  }, []);
+  // useEffect(() => {
+  //   getContributors();
+  // }, []);
 
   return (
     <div>
@@ -522,7 +527,7 @@ export default function CampaignSingle({
                       {contributorsList.map((contributor, index) => {
                         return (
                           <ContributorRow
-                            key= {index}
+                            key={index}
                             id={index + 1}
                             contributor={contributor}
                             ETHPrice={ETHPrice}

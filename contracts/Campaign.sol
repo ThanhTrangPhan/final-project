@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-
 contract CampaignFactory {
     Campaign[] public deployedCampaigns;
 
@@ -31,22 +30,22 @@ contract CampaignFactory {
 contract Campaign {
     struct Request {
         string description;
-        uint value;
+        uint256 value;
         address recipient;
         bool complete;
         uint256 approvalCount;
         mapping(address => bool) approvals;
     }
 
-    struct Contributor{
+    struct Contributor {
         address contributorAddress;
-        uint value;
-        string transactionHash;
+        uint256 value;
+        //string transactionHash;
     }
 
     Request[] public requests;
     address public manager;
-    uint256 public minimunContribution;
+    uint256 public minimumContribution;
     string public CampaignName;
     string public CampaignDescription;
     string public imageUrl;
@@ -54,14 +53,14 @@ contract Campaign {
     Contributor[] public contributors;
     mapping(address => bool) public approvers;
     uint256 public approversCount;
-    uint256 public amount=0; 
+    uint256 public amount = 0;
 
     modifier restricted() {
         require(msg.sender == manager);
         _;
     }
-    
-    event Contributing(address contributor,uint256 amount);
+
+    event Contributing(address contributor, uint256 amount);
 
     constructor(
         uint256 minimum,
@@ -72,46 +71,46 @@ contract Campaign {
         uint256 target
     ) {
         manager = creator;
-        minimunContribution = minimum;
+        minimumContribution = minimum;
         CampaignName = name;
         CampaignDescription = description;
         imageUrl = image;
         targetToAchieve = target;
     }
 
-    function contribute() public payable{
-        require(msg.value > minimunContribution);
+    function contribute() public payable {
+        require(msg.value >= minimumContribution);
         approvers[msg.sender] = true;
-        uint i=0;
-        uint no = contributors.length;
-        for(i;i<no;i+=1){
-            if(msg.sender == contributors[i].contributorAddress){
+        uint256 i = 0;
+        uint256 no = contributors.length;
+        for (i; i < no; i += 1) {
+            if (msg.sender == contributors[i].contributorAddress) {
                 approversCount++;
+            }
         }
-        }
-    }
-    function viewContributor() public view returns (Contributor[] memory){
-        return contributors;
-    }
-    function setContributorList(address contributorAddress, uint256 value, string memory transactionHash) public {
         Contributor memory contributor = Contributor({
-            contributorAddress:contributorAddress,
-            value: value,
-            transactionHash: transactionHash
+            contributorAddress: msg.sender,
+            value: msg.value
         });
         contributors.push(contributor);
     }
-    
-    uint256 public numRequests ;
-    
-    function viewRequest() public view returns (uint256){
+
+    function viewContributor() public view returns (Contributor[] memory) {
+        return contributors;
+    }
+
+
+
+    uint256 public numRequests;
+
+    function viewRequest() public view returns (uint256) {
         return numRequests;
     }
 
     function createRequest(
         string memory description,
-        uint value,
-        address  recipient
+        uint256 value,
+        address recipient
     ) public restricted {
         requests.push();
         Request storage r = requests[numRequests];
@@ -120,7 +119,7 @@ contract Campaign {
         r.recipient = recipient;
         r.complete = false;
         r.approvalCount = 0;
-        numRequests+=1;        
+        numRequests += 1;
     }
 
     function approveRequest(uint256 index) public {
@@ -133,7 +132,7 @@ contract Campaign {
     function finalizeRequest(uint256 index) public restricted {
         require(requests[index].approvalCount > (approversCount / 2));
         require(!requests[index].complete);
-        address payable rec= payable (requests[index].recipient);
+        address payable rec = payable(requests[index].recipient);
         rec.transfer(requests[index].value);
         requests[index].complete = true;
     }
@@ -155,7 +154,7 @@ contract Campaign {
         )
     {
         return (
-            minimunContribution,
+            minimumContribution,
             address(this).balance,
             requests.length,
             approversCount,
@@ -171,6 +170,7 @@ contract Campaign {
     function getRequestsCount() public view returns (uint256) {
         return requests.length;
     }
+
     function getContributorsCount() public view returns (uint256) {
         return contributors.length;
     }

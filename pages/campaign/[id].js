@@ -95,7 +95,7 @@ const ContributorRow = ({
         {web3.utils.fromWei(contributor.value, "ether")}ETH ($
         {getWEIPriceInUSD(ETHPrice, contributor.value)})
       </Td>
-      <Td>
+      {/* <Td>
       <Link
           color="blue.500"
           href={`https://rinkeby.etherscan.io/address/${contributor.transactionHash}`}
@@ -104,7 +104,7 @@ const ContributorRow = ({
           {" "}
           {contributor.transactionHash.substr(0, 10) + "..."}
         </Link>
-      </Td>
+      </Td> */}
       
     </Tr>
   );
@@ -203,12 +203,7 @@ export default function CampaignSingle({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
-      await campaign.methods
-        .setContributorList(
-          accounts[0],
-          web3.utils.toWei(data.value, "ether"),
-          transaction.transactionHash)
-        .send({ from: accounts[0] });
+      
       console.log(transaction);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
@@ -521,12 +516,8 @@ export default function CampaignSingle({
                         <Th>STT</Th>
                         <Th w="45%">Địa chỉ ví </Th>
                         <Th isNumeric>Số lượng </Th>
-                        <Th maxW="20%" isTruncated>
-                          Giao dịch
-                        </Th>
                       </Tr>
                     </Thead>
-                    console.log("529 before map");
                     <Tbody>
                       {contributorsList.map((contributor, index) => {
                         return (

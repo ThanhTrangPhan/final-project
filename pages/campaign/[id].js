@@ -522,7 +522,7 @@ export default function CampaignSingle({
                       {contributorsList.map((contributor, index) => {
                         return (
                           <ContributorRow
-                            key={index}
+                            key= {index}
                             id={index + 1}
                             contributor={contributor}
                             ETHPrice={ETHPrice}

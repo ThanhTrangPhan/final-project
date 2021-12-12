@@ -78,13 +78,7 @@ const ContributorRow = ({
   ETHPrice,
 }) => {
   return (
-    <Tr
-      bg={
-        readyToFinalize && !request.complete
-          ? useColorModeValue("blue.100", "blue.700")
-          : useColorModeValue("black.100", "black.700")
-      }
-    >
+    <Tr>
       <Td>{id} </Td>
       <Td>
         <Link

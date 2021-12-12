@@ -30,12 +30,12 @@ import {
   Tooltip,
   Alert,
   AlertIcon,
-  AlertDescription,
+  AlertDescription ,
   Progress,
   CloseButton,
   FormHelperText,
   Link,
-  Table, Thead, Tr, Tfoot, Tbody, Th
+  Table, Thead, Tr, Tbody, Th, Td 
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";

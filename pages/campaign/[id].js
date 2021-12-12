@@ -65,7 +65,7 @@ export async function getServerSideProps({ params }) {
       name: summary[5],
       description: summary[6],
       image: summary[7],
-      contributorsCount: contributorsCount,
+      contributorsCount: summary[8],
       target: summary[9],
       ETHPrice,
     },
@@ -209,7 +209,6 @@ export default function CampaignSingle({
 
   async function getContributors() {
     try {
-      const contributorsCount = await campaign.methods.getContributorsCount().call;
       console.log("contributors ", contributorsCount);
       const contributors = await Promise.all(
         Array(parseInt(contributorsCount))

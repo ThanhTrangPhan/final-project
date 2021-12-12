@@ -30,12 +30,12 @@ import {
   Tooltip,
   Alert,
   AlertIcon,
-  AlertDescription ,
+  AlertDescription,
   Progress,
   CloseButton,
   FormHelperText,
   Link,
-  Table, Thead, Tr, Tbody, Th, Td 
+  Table, Thead, Tr, Tbody, Th, Td
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
@@ -52,7 +52,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
-  
+
 
   return {
     props: {
@@ -211,7 +211,7 @@ export default function CampaignSingle({
             return campaign.methods.contributors(index).call();
           })
       );
-      
+
       setContributorsList(contributors);
       return contributors;
     } catch (error) {
@@ -507,7 +507,7 @@ export default function CampaignSingle({
                 spacing={4}
               >
                 <Text fontSize={"lf"}>
-                  * Các giao dịch ủng hộ
+                  * Lịch sử đóng góp 
                 </Text>
                 <Box overflowX="auto">
                   <Table>
@@ -532,41 +532,6 @@ export default function CampaignSingle({
                     </Tbody>
                   </Table>
                 </Box>
-                {/* <Table size='sm'>
-                  <Thead>
-                    <Tr>
-                      <Th>STT</Th>
-                      <Th w="30%">Địa chỉ ví</Th>
-                      <Th isNumeric>Số lượng</Th>
-                      <Th maxW="20%">Giao dịch</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>feet</Td>
-                      <Td>centimetres (cm)</Td>
-                      <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>yards</Td>
-                      <Td>metres (m)</Td>
-                      <Td isNumeric>0.91444</Td>
-                    </Tr>
-                  </Tbody>
-                  <Tfoot>
-                    <Tr>
-                      <Th>To convert</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
-                    </Tr>
-                  </Tfoot>
-                </Table> */}
-
               </Stack>
 
             </Stack>

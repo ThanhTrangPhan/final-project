@@ -83,7 +83,7 @@ const ContributorRow = ({
       <Td>
         <Link
           color="blue.500"
-          href={`https://rinkeby.etherscan.io/address/${contributorAddress}`}
+          href={`https://rinkeby.etherscan.io/address/${contributor.contributorAddress}`}
           isExternal
         >
           {" "}

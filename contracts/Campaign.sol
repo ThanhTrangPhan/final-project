@@ -79,20 +79,22 @@ contract Campaign {
     }
 
     function contribute() public payable {
+        
         require(msg.value >= minimumContribution);
         approvers[msg.sender] = true;
         uint256 i = 0;
+        Contributor memory contributor = Contributor({
+            contributorAddress: msg.sender,
+            value: msg.value
+        });
+        contributors.push(contributor);
         uint256 no = contributors.length;
         for (i; i < no; i += 1) {
             if (msg.sender == contributors[i].contributorAddress) {
                 approversCount++;
             }
         }
-        Contributor memory contributor = Contributor({
-            contributorAddress: msg.sender,
-            value: msg.value
-        });
-        contributors.push(contributor);
+        
     }
 
     function viewContributor() public view returns (Contributor[] memory) {

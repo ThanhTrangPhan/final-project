@@ -35,7 +35,7 @@ import {
   CloseButton,
   FormHelperText,
   Link,
-  Table, Thead, Tr, Tfoot, Tbody
+  Table, Thead, Tr, Tfoot, Tbody,Th
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";

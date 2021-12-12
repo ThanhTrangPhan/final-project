@@ -172,7 +172,7 @@ export default function CampaignSingle({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [amountInUSD, setAmountInUSD] = useState();
-  const [contributorsList, setContributorsList] = useState();
+  const [contributorsList, setContributorsList] = useState([]);
   const wallet = useWallet();
   const router = useRouter();
   const { width, height } = useWindowSize();
@@ -526,6 +526,7 @@ export default function CampaignSingle({
                         </Th>
                       </Tr>
                     </Thead>
+                    console.log("529 before map");
                     <Tbody>
                       {contributorsList.map((contributor, index) => {
                         return (

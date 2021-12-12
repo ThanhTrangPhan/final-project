@@ -335,7 +335,7 @@ export default function Requests({
             </Alert>
           ) : null}
         </Container>
-        {requestsList.length > 0 ? (
+        {requestsList.length > 0 ? ( 
           <Container px={{ base: "4", md: "12" }} maxW={"7xl"} align={"left"}>
             <Flex flexDirection={{ base: "column", lg: "row" }} py={4}>
               <Box py="2" pr="2">

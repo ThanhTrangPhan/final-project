@@ -151,7 +151,7 @@ contract Campaign {
             string memory,
             string memory,
             uint256,
-            uint256,
+            uint256
         )
     {
         return (
@@ -164,7 +164,7 @@ contract Campaign {
             CampaignDescription,
             imageUrl,
             contributors.length,
-            targetToAchieve,
+            targetToAchieve
         );
     }
 

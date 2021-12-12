@@ -35,7 +35,7 @@ import {
   CloseButton,
   FormHelperText,
   Link,
-  Table, Thead, Tr, Tfoot,Tbody
+  Table, Thead, Tr, Tfoot, Tbody
 } from "@chakra-ui/react";
 
 import { InfoIcon, ExternalLinkIcon } from "@chakra-ui/icons";
@@ -52,7 +52,7 @@ export async function getServerSideProps({ params }) {
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
   const ETHPrice = await getETHPrice();
-  
+
   return {
     props: {
       id: campaignId,
@@ -64,12 +64,51 @@ export async function getServerSideProps({ params }) {
       name: summary[5],
       description: summary[6],
       image: summary[7],
-      contributorsCount:summary[8],
+      contributorsCount: summary[8],
       target: summary[9],
       ETHPrice,
     },
   };
 }
+
+const ContributorRow = ({
+  id,
+  contributor,
+  transactionHash,
+  ETHPrice,
+}) => {
+  const router = useRouter();
+  return (
+    <Tr>
+      <Td>{id} </Td>
+      <Td>
+        <Link
+          color="blue.500"
+          href={`https://rinkeby.etherscan.io/address/${contributorAddress}`}
+          isExternal
+        >
+          {" "}
+          {contributor.contributorAddress.substr(0, 10) + "..."}
+        </Link>
+      </Td>
+      <Td isNumeric>
+        {web3.utils.fromWei(contributor.value, "ether")}ETH ($
+        {getWEIPriceInUSD(ETHPrice, contributor.value)})
+      </Td>
+      <Td>
+      <Link
+          color="blue.500"
+          href={`https://rinkeby.etherscan.io/address/${contributor.transactionHash}`}
+          isExternal
+        >
+          {" "}
+          {contributor.transactionHash.substr(0, 10) + "..."}
+        </Link>
+      </Td>
+      
+    </Tr>
+  );
+};
 
 function StatsCard(props) {
   const { title, stat, info } = props;
@@ -138,14 +177,14 @@ export default function CampaignSingle({
   const router = useRouter();
   const { width, height } = useWindowSize();
   const campaign = Campaign(id);
-  async function getContributors(){
+  async function getContributors() {
     try {
       const contributors = await Promise.all(
         Array(parseInt(contributorsCount))
-        .fill()
-        .map((contr,index)=>{
-          return campaign.methods.contributors(index).call();
-        })
+          .fill()
+          .map((contr, index) => {
+            return campaign.methods.contributors(index).call();
+          })
       );
       console.log("contributors ", contributors);
       setContributorsList(contributors);
@@ -158,12 +197,18 @@ export default function CampaignSingle({
   async function onSubmit(data) {
     console.log(data);
     try {
-     
+
       const accounts = await web3.eth.getAccounts();
       const transaction = await campaign.methods.contribute().send({
         from: accounts[0],
         value: web3.utils.toWei(data.value, "ether"),
       });
+      await campaign.methods
+        .setContributorsList(
+          accounts[0],
+          web3.utils.toWei(data.value, "ether"),
+          transaction.transactionHash)
+        .send({ from: accounts[0] });
       console.log(transaction);
       router.push(`/campaign/${id}`);
       setAmountInUSD(null);
@@ -171,13 +216,16 @@ export default function CampaignSingle({
         keepValues: false,
       });
       setIsSubmitted(true);
-      
+
       setError(false);
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   }
+  useEffect(() => {
+    getContributors();
+  }, []);
 
   return (
     <div>
@@ -466,6 +514,32 @@ export default function CampaignSingle({
                 <Text fontSize={"lf"}>
                   * Các giao dịch ủng hộ
                 </Text>
+                <Box overflowX="auto">
+                  <Table>
+                    <Thead>
+                      <Tr>
+                        <Th>STT</Th>
+                        <Th w="45%">Địa chỉ ví </Th>
+                        <Th isNumeric>Số lượng </Th>
+                        <Th maxW="20%" isTruncated>
+                          Giao dịch
+                        </Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {contributorsList.map((contributor, index) => {
+                        return (
+                          <ContributorRow
+                            key={index}
+                            id={index + 1}
+                            contributor={contributor}
+                            ETHPrice={ETHPrice}
+                          />
+                        );
+                      })}
+                    </Tbody>
+                  </Table>
+                </Box>
                 {/* <Table size='sm'>
                   <Thead>
                     <Tr>
@@ -500,7 +574,7 @@ export default function CampaignSingle({
                     </Tr>
                   </Tfoot>
                 </Table> */}
-                
+
               </Stack>
 
             </Stack>

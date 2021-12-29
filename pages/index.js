@@ -257,6 +257,7 @@ export default function Home({ campaigns }) {
               fontSize={"md"}
               fontWeight={600}
               color={"white"}
+              align="center"
               bg={"gray.400"}
               _hover={{
                 bg: "blue.700",

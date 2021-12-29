@@ -240,7 +240,7 @@ export default function Home({ campaigns }) {
         <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main className={styles.main}>
-        <Container py={{ base: "4", md: "12" }} maxW={"7xl"} align={"left"} position ="relative">
+        <Container py={{ base: "4", md: "12" }} maxW={"7xl"} align={"center"} position ="relative">
           {" "}
           <Heading
             textAlign={useBreakpointValue({ base: "center" })}

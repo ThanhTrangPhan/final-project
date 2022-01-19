@@ -93,6 +93,7 @@ contract Campaign {
                 approversCount++;
             }
         }
+        amount+= msg.value;
         
     }
 
@@ -149,6 +150,7 @@ contract Campaign {
             string memory,
             string memory,
             uint256,
+            uint256,
             uint256
         )
     {
@@ -162,7 +164,8 @@ contract Campaign {
             CampaignDescription,
             imageUrl,
             contributors.length,
-            targetToAchieve
+            targetToAchieve,
+            amount
         );
     }
 

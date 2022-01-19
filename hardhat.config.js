@@ -17,27 +17,29 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 
- const fs = require('fs')
- const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789"
- 
- module.exports = {
-   defaultNetwork: "rinkeby",
-   networks: {
-     hardhat: {
-       chainId: 1337
-     },
-     rinkeby: {
-       url: 'https://rinkeby.infura.io/v3/83b57356a6be4e3e99890c21874b8d72',
-       accounts: [privateKey]
-     }
-   },
-   solidity: {
-     version: "0.8.0",
-     settings: {
-       optimizer: {
-         enabled: true,
-         runs: 200
-       }
-     }
-   }
- }
+const fs = require('fs')
+const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789"
+
+module.exports = {
+  defaultNetwork: "rinkeby",
+  networks: {
+    hardhat: {
+      chainId: 1337
+    },
+    
+    moonbase: {
+      url: 'https://rpc.api.moonbase.moonbeam.network',
+      chainId: 1287, // 0x507 in hex,
+      accounts: [privateKey]
+    }
+  },
+  solidity: {
+    version: "0.8.0",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  }
+}

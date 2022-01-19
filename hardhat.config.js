@@ -41,5 +41,8 @@ module.exports = {
         runs: 200
       }
     }
+  },
+  moonscan:{
+    apiKey:"ckey_988fa5da39cf413b8ae09aef8a4"
   }
 }

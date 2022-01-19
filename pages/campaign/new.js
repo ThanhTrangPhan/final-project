@@ -25,7 +25,6 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { getETHPrice, getETHPriceInUSD } from "../../lib/convert";
 
 import factory from "../../service/factory";
 import web3 from "../../service/web3";
@@ -43,7 +42,6 @@ export default function NewCampaign() {
   const wallet = useWallet();
   const [minContriInUSD, setMinContriInUSD] = useState();
   const [targetInUSD, setTargetInUSD] = useState();
-  const [ETHPrice, setETHPrice] = useState(0);
   useAsync(async () => {
     try {
       const result = await getETHPrice();
@@ -73,7 +71,7 @@ export default function NewCampaign() {
         .send({
           from: accounts[0],
         });
-      
+
       router.push("/");
     } catch (err) {
       setError(err.message);
@@ -86,13 +84,12 @@ export default function NewCampaign() {
       <Head>
         <title>Chiến dịch mới</title>
         <meta name="description" content="Create New Campaign" />
-        <link rel="icon" href="/icons8-kite-50.png" />
       </Head>
       <main>
         <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={12} px={6}>
           <Text fontSize={"lg"} color={"blue.400"}>
             <ArrowBackIcon mr={2} />
-            <NextLink href="/"> Quay lại trang chủ </NextLink>
+            <NextLink href="/"> Quay lại </NextLink>
           </Text>
           <Stack>
             <Heading fontSize={"4xl"}>Tạo 1 chiến dịch mới</Heading>
@@ -114,17 +111,11 @@ export default function NewCampaign() {
                       step="any"
                       {...register("minimumContribution", { required: true })}
                       isDisabled={isSubmitting}
-                      onChange={(e) => {
-                        setMinContriInUSD(Math.abs(e.target.value));
-                      }}
+                      
                     />{" "}
                     <InputRightAddon children="ETH" />
                   </InputGroup>
-                  {minContriInUSD ? (
-                    <FormHelperText>
-                      ~$ {getETHPriceInUSD(ETHPrice, minContriInUSD)}
-                    </FormHelperText>
-                  ) : null}
+                
                 </FormControl>
                 <FormControl id="campaignName">
                   <FormLabel>Tên chiến dịch</FormLabel>
@@ -149,36 +140,23 @@ export default function NewCampaign() {
                   />
                 </FormControl>
                 <FormControl id="target">
-                  <FormLabel>Gọi quỹ/vốn đạt mục tiêu: </FormLabel>
+                  <FormLabel>Gọi quỹ: </FormLabel>
                   <InputGroup>
                     <Input
                       type="number"
-                      step="any"
                       {...register("target", { required: true })}
                       isDisabled={isSubmitting}
-                      onChange={(e) => {
-                        setTargetInUSD(Math.abs(e.target.value));
-                      }}
                     />
-                    <InputRightAddon children="ETH" />
+                    
                   </InputGroup>
-                  {targetInUSD ? (
-                    <FormHelperText>
-                      ~$ {getETHPriceInUSD(ETHPrice, targetInUSD)}
-                    </FormHelperText>
-                  ) : null}
+
                 </FormControl>
 
-                {error ? (
-                  <Alert status="error">
-                    <AlertIcon />
-                    <AlertDescription mr={2}> {error}</AlertDescription>
-                  </Alert>
-                ) : null}
+                
                 {errors.minimumContribution ||
-                errors.name ||
-                errors.description ||
-                errors.target ? (
+                  errors.name ||
+                  errors.description ||
+                  errors.target ? (
                   <Alert status="error">
                     <AlertIcon />
                     <AlertDescription mr={2}>
@@ -198,7 +176,7 @@ export default function NewCampaign() {
                       isLoading={isSubmitting}
                       type="submit"
                     >
-                      Tạo 
+                      Tạo
                     </Button>
                   ) : (
                     <Stack spacing={3}>

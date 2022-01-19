@@ -4,11 +4,7 @@ import { useWallet } from "use-wallet";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useWindowSize } from "react-use";
-import {
-  getETHPrice,
-  getETHPriceInUSD,
-  getWEIPriceInUSD,
-} from "../../lib/convert";
+
 import {
   Box,
   Flex,
@@ -44,14 +40,11 @@ import Confetti from "react-confetti";
 
 import web3 from "../../service/web3";
 import Campaign from "../../service/campaign";
-import factory from "../../service/factory";
-import campaign from "../../service/campaign";
 
 export async function getServerSideProps({ params }) {
   const campaignId = params.id;
   const campaign = Campaign(campaignId);
   const summary = await campaign.methods.getSummary().call();
-  const ETHPrice = await getETHPrice();
 
 
   return {
@@ -67,47 +60,10 @@ export async function getServerSideProps({ params }) {
       image: summary[7],
       contributorsCount: summary[8],
       target: summary[9],
-      ETHPrice,
     },
   };
 }
 
-const ContributorRow = ({
-  id,
-  contributor,
-  ETHPrice,
-}) => {
-  return (
-    <Tr>
-      <Td>{id} </Td>
-      <Td>
-        <Link
-          color="blue.500"
-          href={`https://rinkeby.etherscan.io/address/${contributor.contributorAddress}`}
-          isExternal
-        >
-          {" "}
-          {contributor.contributorAddress.substr(0, 10) + "..."}
-        </Link>
-      </Td>
-      <Td isNumeric>
-        {web3.utils.fromWei(contributor.value, "ether")}ETH ($
-        {getWEIPriceInUSD(ETHPrice, contributor.value)})
-      </Td>
-      {/* <Td>
-      <Link
-          color="blue.500"
-          href={`https://rinkeby.etherscan.io/address/${contributor.transactionHash}`}
-          isExternal
-        >
-          {" "}
-          {contributor.transactionHash.substr(0, 10) + "..."}
-        </Link>
-      </Td> */}
-
-    </Tr>
-  );
-};
 
 function StatsCard(props) {
   const { title, stat, info } = props;
@@ -165,7 +121,7 @@ export default function CampaignSingle({
   target,
   ETHPrice,
 }) {
-  const { handleSubmit, register, formState, reset, getValues } = useForm({
+  const { handleSubmit, register, formState, reset } = useForm({
     mode: "onChange",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -188,7 +144,6 @@ export default function CampaignSingle({
       });
       
       router.push(`/campaign/${id}`);
-      setAmountInUSD(null);
       reset("", {
         keepValues: false,
       });
@@ -276,10 +231,10 @@ export default function CampaignSingle({
               </Text>
               <Link
                 color="blue.500"
-                href={`https://rinkeby.etherscan.io/address/${id}`}
+                href={`https://moonbase.moonscan.io/address/${id}`}
                 isExternal
               >
-                Xem trên Rinkeby Etherscan <ExternalLinkIcon mx="2px" />
+                Xem trên Moonscan <ExternalLinkIcon mx="2px" />
               </Link>
               <Box mx={"auto"} w={"full"}>
                 <SimpleGrid columns={{ base: 1 }} spacing={{ base: 5 }}>
@@ -288,13 +243,7 @@ export default function CampaignSingle({
                     stat={`${web3.utils.fromWei(
                       minimumContribution,
                       "ether"
-                    )} ETH ($${getWEIPriceInUSD(
-                      ETHPrice,
-                      minimumContribution
-                    )})`}
-                    info={
-                      "Lượng tối thiểu Wei ( 1 ETH = 10 ^ 18 Wei) cần để trở thành người tham gia quỹ "
-                    }
+                    )} DEV`}
                   />
                   <StatsCard
                     title={"Địa chỉ ví của người/tổ chức tạo chiến dịch"}
@@ -412,7 +361,7 @@ export default function CampaignSingle({
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl id="value">
                       <FormLabel>
-                        Số lượng ETH bạn muốn đóng góp
+                        Số lượng DEV đóng góp
                       </FormLabel>
                       <InputGroup>
                         {" "}
